@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://resources/player.png" type="Texture" id=1]
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=2]
+[ext_resource path="res://Player.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40.1051, 33.5939 )
 
 [node name="Player" type="Area2D"]
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -21,3 +23,4 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
 position = Vector2( 100, 200 )
 texture = ExtResource( 1 )
+[connection signal="hit" from="KinematicBody2D" to="." method="_on_KinematicBody2D_hit"]

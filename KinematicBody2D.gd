@@ -1,9 +1,12 @@
 extends KinematicBody2D
-export var speed = 200
-export var vel = Vector2()
-
+signal hit
+export var speed = 450
+export var vel = Vector2(0, 0)
 func _ready():
 	pass # Replace with function body.
+func _input(event):
+	if Input.is_key_pressed(KEY_SPACE):
+		print("shoot")
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_right"):
 		$Sprite.rotate(0.17)
@@ -12,12 +15,11 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("ui_up"):
 		var rot = $Sprite.rotation
 		vel.x = cos(rot)
-		vel.y =	sin(rot)
-		vel = speed * vel.normalized()	
-		$Sprite.position += delta * vel
+		vel.y = sin(rot)
+		vel *= speed	
 	else:
-		vel.x *= 1.25
-		vel.y *= 1.25
-	move_and_slide(vel)
-	
-
+		vel.x *= 0.9
+		vel.y *= 0.9
+	move_and_slide(vel, Vector2( 0, 0 ), false, 4, 0.785398, false)
+	if get_slide_count() > 0:
+		emit_signal("hit")

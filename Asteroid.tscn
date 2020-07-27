@@ -1,42 +1,45 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://resources/asteroid2.png" type="Texture" id=1]
+[ext_resource path="res://Asteroid.gd" type="Script" id=1]
 [ext_resource path="res://resources/asteroid1.png" type="Texture" id=2]
-[ext_resource path="res://resources/asteroid3.png" type="Texture" id=3]
-[ext_resource path="res://resources/asteroid4.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
+"frames": [  ],
 "loop": true,
-"name": "type2",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "type4",
+"name": "default",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "type1",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "type3",
+"name": "Asteroid",
 "speed": 5.0
 } ]
 
-[node name="Asteroid" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 35.8818, 36.229 )
+
+[node name="RigidBody2D" type="RigidBody2D"]
+position = Vector2( 124.867, 110.597 )
+collision_layer = 0
+gravity_scale = 0.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.705642, 0.801799 )
 frames = SubResource( 1 )
-animation = "type4"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+animation = "Asteroid"
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 1.1892, -0.594608 )
+scale = Vector2( 3.49733, 3.67572 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
