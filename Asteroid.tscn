@@ -16,9 +16,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="RigidBody2D" type="RigidBody2D" groups=[
+"asteroids",
+]]
 position = Vector2( 120.529, 115.55 )
-collision_layer = 0
+collision_layer = 2
 gravity_scale = 0.0
 script = ExtResource( 1 )
 
