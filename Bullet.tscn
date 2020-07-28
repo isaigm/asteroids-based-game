@@ -7,9 +7,10 @@
 radius = 7.78543
 height = 23.8697
 
-[node name="Bullet" type="KinematicBody2D"]
+[node name="Bullet" type="RigidBody2D"]
 collision_layer = 4
 collision_mask = 2
+gravity_scale = 0.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

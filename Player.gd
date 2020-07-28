@@ -9,6 +9,9 @@ func _input(event):
 	if Input.is_key_pressed(KEY_SPACE):
 		var bullet = Bullet.instance()
 		bullet.position = position
+		bullet.rotation = $Sprite.rotation
+		bullet.linear_velocity = Vector2(100, 0)
+		bullet.linear_velocity = bullet.linear_velocity.rotated(bullet.rotation)
 		get_parent().add_child(bullet)
 func _physics_process(delta):
 	var rot = $Sprite.rotation
