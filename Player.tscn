@@ -1,26 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://resources/player.png" type="Texture" id=1]
-[ext_resource path="res://KinematicBody2D.gd" type="Script" id=2]
 [ext_resource path="res://Player.gd" type="Script" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 40.1051, 33.5939 )
-
-[node name="Player" type="Area2D"]
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 527.613, 290.293 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-script = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-position = Vector2( 97.8946, 200 )
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
-position = Vector2( 100, 200 )
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-[connection signal="hit" from="KinematicBody2D" to="." method="_on_KinematicBody2D_hit"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -17.493, -31.7143, -17.9742, -14.9986, -24.2354, -8.86511, -23.8608, 9.86374, -18.6027, 15.022, -18.3626, 32.4015, -13.3726, 31.5892, -13.212, 31.4329, 24.085, 2.37219, 24.085, -3.24646, 23.8874, -3.16785 )

@@ -1,20 +1,10 @@
 extends Node
 export (PackedScene) var Asteroid
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	$AsteroidTimer.start()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 func _on_AsteroidTimer_timeout():
 	$AsteroidPath/AsteroidSpawnLocation.offset = randi()
 	# Create a Mob instance and add it to the scene.
@@ -31,5 +21,7 @@ func _on_AsteroidTimer_timeout():
 	asteroid.linear_velocity = Vector2(rand_range(asteroid.min_speed, asteroid.max_speed), 0)
 	asteroid.linear_velocity = asteroid.linear_velocity.rotated(direction)
 
-func _on_Player_stop():
+
+
+func _on_Player_hit():
 	$AsteroidTimer.stop()

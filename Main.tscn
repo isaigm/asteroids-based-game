@@ -23,5 +23,5 @@ curve = SubResource( 1 )
 
 [node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
 rotation = 0.00781234
-[connection signal="stop" from="Player" to="." method="_on_Player_stop"]
+[connection signal="hit" from="Player" to="." method="_on_Player_hit"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Asteroid.gd" type="Script" id=1]
 [ext_resource path="res://resources/asteroid1.png" type="Texture" id=2]
@@ -16,17 +16,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 35.8818, 36.229 )
-
 [node name="RigidBody2D" type="RigidBody2D"]
-position = Vector2( 124.867, 110.597 )
+position = Vector2( 120.529, 115.55 )
 collision_layer = 0
 gravity_scale = 0.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.705642, 0.801799 )
@@ -40,6 +34,10 @@ __meta__ = {
 position = Vector2( 1.1892, -0.594608 )
 scale = Vector2( 3.49733, 3.67572 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0.667419, -3.3371 )
+polygon = PoolVector2Array( -24.1837, -29.9431, -34.8624, 9.76834, -17.5095, 35.1303, 22.5357, 30.4584, 23.2031, 29.4572, 34.5493, 3.42786, 15.8615, -29.9431 )
+__meta__ = {
+"_edit_group_": true
+}
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
