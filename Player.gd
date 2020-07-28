@@ -3,16 +3,24 @@ signal hit
 export var speed = 450
 export var vel = Vector2(0, 0)
 export (PackedScene) var Bullet
+var can_shoot = true
+
 func _ready():
 	pass # Replace with function body.
+
 func _input(event):
-	if Input.is_key_pressed(KEY_SPACE):
+	if Input.is_key_pressed(KEY_SPACE) and can_shoot:
+		$Shoot.play()
 		var bullet = Bullet.instance()
 		bullet.position = position
-		bullet.rotation = $Sprite.rotation
-		bullet.linear_velocity = Vector2(100, 0)
-		bullet.linear_velocity = bullet.linear_velocity.rotated(bullet.rotation)
+		var dir = $Sprite.rotation
+		bullet.rotation = dir
+		bullet.linear_velocity = Vector2(600, 0)
+		bullet.linear_velocity = bullet.linear_velocity.rotated(dir)
+		can_shoot = false
+		$Cooldown.start()
 		get_parent().add_child(bullet)
+
 func _physics_process(delta):
 	var rot = $Sprite.rotation
 	if Input.is_action_pressed("ui_right"):
@@ -33,3 +41,7 @@ func _physics_process(delta):
 	move_and_slide(vel, Vector2( 0, 0 ), false, 4, 0.785398, false)
 	if get_slide_count() > 0:
 		emit_signal("hit")
+
+
+func _on_Cooldown_timeout():
+	can_shoot = true
