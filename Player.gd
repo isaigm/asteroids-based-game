@@ -41,7 +41,6 @@ func _physics_process(delta):
 	move_and_slide(vel, Vector2( 0, 0 ), false, 4, 0.785398, false)
 	if get_slide_count() > 0:
 		emit_signal("hit")
-
-
+		
 func _on_Cooldown_timeout():
 	can_shoot = true

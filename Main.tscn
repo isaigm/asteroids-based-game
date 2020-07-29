@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
 [ext_resource path="res://Asteroid.tscn" type="PackedScene" id=3]
 [ext_resource path="res://resources/background.png" type="Texture" id=4]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -15,7 +16,7 @@ script = ExtResource( 2 )
 Asteroid = ExtResource( 3 )
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 536, 264 )
+position = Vector2( 496, 296 )
 texture = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
@@ -28,5 +29,7 @@ curve = SubResource( 1 )
 
 [node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
 rotation = 0.00781234
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
 [connection signal="hit" from="Player" to="." method="_on_Player_hit"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]

@@ -24,3 +24,4 @@ func _on_AsteroidTimer_timeout():
 func _on_Player_hit():
 	get_tree().call_group("asteroids", "queue_free")
 	$AsteroidTimer.stop()
+	$HUD.update_score(0)

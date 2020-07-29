@@ -21,7 +21,7 @@ texture = ExtResource( 1 )
 polygon = PoolVector2Array( -17.493, -31.7143, -17.9742, -14.9986, -24.2354, -8.86511, -23.8608, 9.86374, -18.6027, 15.022, -18.3626, 32.4015, -13.3726, 31.5892, -13.212, 31.4329, 24.085, 2.37219, 24.085, -3.24646, 23.8874, -3.16785 )
 
 [node name="Cooldown" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
