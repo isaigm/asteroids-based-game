@@ -25,3 +25,11 @@ func _on_Player_hit():
 	get_tree().call_group("asteroids", "queue_free")
 	$AsteroidTimer.stop()
 	$HUD.update_score(0)
+	$HUD/Score.hide()
+	$HUD/Button.show()
+	$Player.disable()
+
+func _on_HUD_start():
+	$Player.start($StartPos.position)
+	$AsteroidTimer.start()
+	get_tree().call_group("asteroids", "queue_free")

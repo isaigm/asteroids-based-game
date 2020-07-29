@@ -31,5 +31,9 @@ curve = SubResource( 1 )
 rotation = 0.00781234
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="StartPos" type="Position2D" parent="."]
+position = Vector2( 500, 300 )
 [connection signal="hit" from="Player" to="." method="_on_Player_hit"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]
+[connection signal="start" from="HUD" to="." method="_on_HUD_start"]
