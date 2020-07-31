@@ -19,6 +19,10 @@ config/name="simple-game"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/resizable=false
+
 [layer_names]
 
 2d_physics/layer_1="player"
