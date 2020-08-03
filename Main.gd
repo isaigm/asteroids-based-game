@@ -1,6 +1,16 @@
 extends Node
 export (PackedScene) var Asteroid
 
+func restart():
+	get_tree().call_group("asteroids", "queue_free")
+	$AsteroidTimer.stop()
+	$HUD/Score.hide()
+	$HUD/Button.show()
+	$Player.disable()
+	saveGame()
+	loadGame()
+	$HUD.update_score(0)
+	
 func loadGame():
 	var max_score = loadFile()
 	if max_score.length() == 0:
@@ -57,16 +67,12 @@ func _on_AsteroidTimer_timeout():
 	asteroid.linear_velocity = asteroid.linear_velocity.rotated(direction)
 
 func _on_Player_hit():
-	get_tree().call_group("asteroids", "queue_free")
-	$AsteroidTimer.stop()
-	$HUD/Score.hide()
-	$HUD/Button.show()
-	$Player.disable()
-	saveGame()
-	loadGame()
-	$HUD.update_score(0)
+	restart()
 	
 func _on_HUD_start():
 	$Player.start($StartPos.position)
 	$AsteroidTimer.start()
 	get_tree().call_group("asteroids", "queue_free")
+
+func _on_Player_out_of_bounds():
+	restart()

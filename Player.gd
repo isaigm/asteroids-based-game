@@ -1,5 +1,6 @@
 extends KinematicBody2D
 signal hit
+signal out_of_bounds	
 export var speed = 450
 export var vel = Vector2(0, 0)
 export (PackedScene) var Bullet
@@ -12,15 +13,16 @@ func _input(event):
 	if Input.is_key_pressed(KEY_SPACE) and can_shoot and playing:
 		$Shoot.play()
 		var bullet = Bullet.instance()
-		bullet.position = position
 		var dir = $Sprite.rotation
+		var cartesian = Vector2(cos(dir), sin(dir))
+		bullet.position = position + 22 * cartesian
 		bullet.rotation = dir
 		bullet.linear_velocity = Vector2(600, 0)
 		bullet.linear_velocity = bullet.linear_velocity.rotated(dir)
 		can_shoot = false
 		$Cooldown.start()
 		get_parent().add_child(bullet)
-
+		
 func _physics_process(delta):
 	if playing:
 		var rot = $Sprite.rotation
@@ -56,3 +58,6 @@ func disable():
 	hide()
 	playing = false
 	$CollisionShape2D.set_deferred("disabled", true)
+
+func _on_VisibilityNotifier2D_screen_exited():
+	emit_signal("out_of_bounds")

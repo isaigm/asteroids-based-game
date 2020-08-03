@@ -35,5 +35,6 @@ rotation = 0.00781234
 [node name="StartPos" type="Position2D" parent="."]
 position = Vector2( 500, 300 )
 [connection signal="hit" from="Player" to="." method="_on_Player_hit"]
+[connection signal="out_of_bounds" from="Player" to="." method="_on_Player_out_of_bounds"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]
 [connection signal="start" from="HUD" to="." method="_on_HUD_start"]
